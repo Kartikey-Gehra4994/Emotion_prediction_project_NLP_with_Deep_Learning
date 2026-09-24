@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080b12" />
+  <title>Emotion AI | Text Emotion Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E😊%3C/text%3E%3C/svg%3E" />
+  
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="grid-overlay"></div>
+
+  <main class="app-shell">
+    <nav class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">E</span>
+        <span>Emotion<span class="brand-muted">AI</span></span>
+      </a>
+      <div class="nav-meta">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Checking model...</span>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow"><span></span> BiGRU neural text classifier</div>
+      <h1>Read the emotion<br><em>behind the words.</em></h1>
+      <p class="hero-copy">
+        Write a thought, message, or sentence. The model analyzes the language
+        and estimates the emotion expressed in it.
+      </p>
+    </section>
+
+    <section class="workspace">
+      <div class="composer-card card">
+        <div class="card-head">
+          <div>
+            <span class="section-label">INPUT</span>
+            <h2>What are you feeling?</h2>
+          </div>
+          <span class="counter" id="counter">0 / 1000</span>
+        </div>
+
+        <div class="textarea-wrap" id="textareaWrap">
+          <textarea
+            id="textInput"
+            maxlength="1000"
+            spellcheck="true"
+            placeholder="Type something like: I finally finished my project and I feel amazing..."
+            aria-label="Text to analyze"
+          ></textarea>
+          <div class="focus-line"></div>
+        </div>
+
+        <div class="quick-prompts">
+          <span class="prompt-label">Try a sample</span>
+          <button class="prompt-chip" data-text="I finally achieved something I have been working on for months.">Achievement</button>
+          <button class="prompt-chip" data-text="I don't know what is going to happen and it makes me nervous.">Nervous</button>
+          <button class="prompt-chip" data-text="I really miss the people I used to spend every day with.">Missing someone</button>
+          <button class="prompt-chip" data-text="I can't believe this actually happened! What a surprise.">Surprise</button>
+        </div>
+
+        <div class="action-row">
+          <button class="clear-btn" id="clearBtn" type="button">Clear</button>
+          <button class="analyze-btn" id="analyzeBtn" type="button">
+            <span class="btn-text">Analyze emotion</span>
+            <span class="btn-loader"></span>
+            <span class="arrow">↗</span>
+          </button>
+        </div>
+        <p class="error-message" id="errorMessage"></p>
+      </div>
+
+      <div class="result-card card" id="resultCard">
+        <div class="card-head result-head">
+          <div>
+            <span class="section-label">RESULT</span>
+            <h2>Model interpretation</h2>
+          </div>
+          <div class="model-badge">BiGRU</div>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-orbit">
+            <div class="orbit-ring ring-a"></div>
+            <div class="orbit-ring ring-b"></div>
+            <div class="orbit-core">✦</div>
+          </div>
+          <h3>Your result will appear here</h3>
+          <p>Enter text on the left and run the model to see the predicted emotion and confidence distribution.</p>
+        </div>
+
+        <div class="prediction-state" id="predictionState" hidden>
+          <div class="prediction-main">
+            <div class="emotion-icon" id="emotionIcon">😊</div>
+            <div>
+              <span class="section-label">PREDICTED EMOTION</span>
+              <div class="emotion-name" id="emotionName">Joy</div>
+            </div>
+            <div class="confidence-wrap">
+              <span>CONFIDENCE</span>
+              <strong id="confidence">0%</strong>
+            </div>
+          </div>
+
+          <div class="confidence-track">
+            <div class="confidence-fill" id="confidenceFill"></div>
+          </div>
+
+          <div class="quote-box">
+            <span class="quote-mark">“</span>
+            <p id="analyzedText">Your text will appear here.</p>
+          </div>
+
+          <div class="probability-section">
+            <div class="probability-title">
+              <span>Emotion distribution</span>
+              <span class="muted">Model probabilities</span>
+            </div>
+            <div id="probabilityList" class="probability-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Text Emotion Detection</span>
+      <span class="footer-separator">•</span>
+      <span>Powered by a BiGRU model</span>
+      <span class="footer-right">Your text is processed by this application for prediction.</span>
+    </footer>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
