@@ -11,7 +11,7 @@ import pickle
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 
-model_path = "Artifacts/BIGRU_model.keras"
+model_path = "Artifacts/BIGRU_Model.keras"
 
 tokenizer_path = "Artifacts/tokenizer.pkl"
 
